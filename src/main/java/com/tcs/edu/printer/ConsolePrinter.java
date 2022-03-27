@@ -1,3 +1,5 @@
+package com.tcs.edu.printer;
+
 public class ConsolePrinter {
     /**
      * Class name ConsolePrinter.
