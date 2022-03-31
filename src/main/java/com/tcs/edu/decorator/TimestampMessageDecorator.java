@@ -9,6 +9,7 @@ public class TimestampMessageDecorator {
    * @return Current Date&Time and message
    */
   public static String decorate(String message) {
-    return Instant.now().toString() + " " + message;
+    String result = Instant.now().toString() + " " + message;
+    return result;
   }
 }
