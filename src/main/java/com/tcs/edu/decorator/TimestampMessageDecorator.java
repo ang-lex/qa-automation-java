@@ -15,7 +15,7 @@ public class TimestampMessageDecorator {
    * @return Current Date&Time and message
    */
   public static String decorate(String message) {
-    String result = value++ + "  " + Instant.now().toString() + " " + message;
-    return result;
+    var decoratedMessage = value++ + "  " + Instant.now().toString() + " " + message;
+    return decoratedMessage;
   }
 }
