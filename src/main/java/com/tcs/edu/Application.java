@@ -6,7 +6,7 @@ import static com.tcs.edu.decorator.TimestampMessageDecorator.decorate;
 
 class Application {
   public static void main(String[] args) {
-    for (int i=0;i<=3;i++) {
+    for (int i=0;i<10;i++) {
       ConsolePrinter.print(decorate("Hello world!"));
     }
   }
