@@ -5,8 +5,13 @@ import static com.tcs.edu.printer.MessageService.print;
 
 class Application {
   public static void main(String[] args) {
-    for (int i = 0; i < 10; i++) {
-      print(getRandom(), "Hello world!");
-    }
+    print(getRandom(), "Hello world!");
+    print(getRandom(), "Hello world!");
+    print(getRandom(), "Hello world!", "test");
+    print(getRandom(), "Hello world!");
+    print(getRandom(), "Hello world!", "test1", "test2");
+    print(getRandom(), "Hello world!");
+    print(getRandom(), "Hello world!");
+    print(getRandom(), "Hello world!");
   }
 }

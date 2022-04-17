@@ -10,7 +10,8 @@ import static com.tcs.edu.decorator.TimestampMessageDecorator.decorate;
  *
  */
 public class MessageService {
-  public static void print(Severity level, String message) {
-    ConsolePrinter.print(CutDecorator.cutter(decorate(message) + " " + severityLevel(level)));
+  public static void print(Severity level, String... messages) {
+    for (String message : messages)
+      ConsolePrinter.print(CutDecorator.cutter(decorate(message) + " " + severityLevel(level)));
   }
 }
