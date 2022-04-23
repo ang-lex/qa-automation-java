@@ -1,11 +1,13 @@
 package com.tcs.edu.decorator;
 
+import java.util.Random;
+
 public enum Severity {
   MAJOR,
   MINOR,
   REGULAR;
 
   public static Severity getRandom() {
-    return values()[(int) (Math.random() * values().length)];
+    return values()[new Random().nextInt(values().length)];
   }
 }
