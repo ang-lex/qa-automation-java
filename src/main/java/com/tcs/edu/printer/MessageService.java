@@ -14,7 +14,9 @@ public class MessageService {
   public static void print(Severity level, String... messages) {
     try {
       for (String message : messages) {
-        ConsolePrinter.print(CutDecorator.cutter(decorate(message) + " " + severityLevel(level)));
+        if (message != null) {
+          ConsolePrinter.print(CutDecorator.cutter(decorate(message) + " " + severityLevel(level)));
+        }
       }
     } catch (Exception e) {
       value--;
