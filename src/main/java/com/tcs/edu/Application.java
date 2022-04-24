@@ -1,5 +1,9 @@
 package com.tcs.edu;
 
+import com.tcs.edu.decorator.Doubling;
+
+import static com.tcs.edu.decorator.Doubling.DISTINCT;
+import static com.tcs.edu.decorator.Doubling.DOUBLES;
 import static com.tcs.edu.decorator.MessageOrder.ASC;
 import static com.tcs.edu.decorator.MessageOrder.DESC;
 import static com.tcs.edu.decorator.Severity.getRandom;
@@ -15,5 +19,9 @@ class Application {
     print(getRandom(), DESC,"Hello world!");
     print(getRandom(), ASC,null);
     print(getRandom(), ASC,"Hello world!");
+    print(getRandom(), DESC, DISTINCT,"Hello world!", "test1", "test2");
+    print(getRandom(), ASC,DISTINCT,"Hello world!");
+    print(getRandom(), ASC,DOUBLES,null);
+    print(getRandom(), ASC,DOUBLES,"Hello world!");
   }
 }
