@@ -5,13 +5,19 @@ import com.tcs.edu.decorator.Severity;
 
 import static com.tcs.edu.decorator.SeverityDecorator.severityLevel;
 import static com.tcs.edu.decorator.TimestampMessageDecorator.decorate;
+import static com.tcs.edu.decorator.TimestampMessageDecorator.value;
 
 /**
  *
  */
 public class MessageService {
   public static void print(Severity level, String... messages) {
-    for (String message : messages)
-      ConsolePrinter.print(CutDecorator.cutter(decorate(message) + " " + severityLevel(level)));
+    try {
+      for (String message : messages) {
+        ConsolePrinter.print(CutDecorator.cutter(decorate(message) + " " + severityLevel(level)));
+      }
+    } catch (Exception e) {
+      value--;
+    }
   }
 }
