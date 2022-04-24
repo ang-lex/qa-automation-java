@@ -1,6 +1,7 @@
 package com.tcs.edu.decorator;
 
 import static com.tcs.edu.decorator.TimestampMessageDecorator.value;
+
 /**
  * Class for separating messages by page size
  */
@@ -9,7 +10,7 @@ public class CutDecorator {
 
   public static String cutter(String cutter) {
     String templateCut = "%s";
-    if ((value + 1) % PAGE_SIZE == 0) {
+    if ((value) % PAGE_SIZE == 0) {
       templateCut += "\n ______";
     }
     return String.format(templateCut, cutter);
