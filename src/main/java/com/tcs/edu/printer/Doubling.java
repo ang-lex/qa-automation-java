@@ -1,4 +1,4 @@
-package com.tcs.edu.decorator;
+package com.tcs.edu.printer;
 
 public enum Doubling {
   DOUBLES,
