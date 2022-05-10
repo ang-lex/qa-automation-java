@@ -14,11 +14,11 @@ public class Message {
   }
 
   public Message(String body) {
-    new Message(MINOR, body);
+    this(MINOR, body);
   }
 
   public Message() {
-    new Message(MINOR, "default test");
+    this(MINOR, "default test");
   }
 
   public Severity getSeverity() {
