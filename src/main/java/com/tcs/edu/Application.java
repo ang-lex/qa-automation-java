@@ -1,26 +1,35 @@
 package com.tcs.edu;
 
-import static com.tcs.edu.printer.Doubling.DISTINCT;
-import static com.tcs.edu.printer.Doubling.DOUBLES;
-import static com.tcs.edu.printer.MessageOrder.ASC;
-import static com.tcs.edu.printer.MessageOrder.DESC;
-import static com.tcs.edu.decorator.Severity.getRandom;
-import static com.tcs.edu.printer.MessageService.print;
+import com.tcs.edu.decorator.TimestampMessageDecorator;
+import com.tcs.edu.domain.Message;
+import com.tcs.edu.enums.Severity;
+import com.tcs.edu.interfaces.MessageService;
+import com.tcs.edu.printer.ConsolePrinter;
+
+import static com.tcs.edu.enums.Doubling.DISTINCT;
+import static com.tcs.edu.enums.Doubling.DOUBLES;
+import static com.tcs.edu.enums.MessageOrder.ASC;
+import static com.tcs.edu.enums.MessageOrder.DESC;
+import static com.tcs.edu.enums.Severity.*;
 
 class Application {
   public static void main(String[] args) {
-    print(getRandom(), "Hello world!", "test1", "test2");
-    print(getRandom(), ASC, "Hello world!1");
-    print(null, ASC, "Hello world!2");
-    print(getRandom(), DESC, "Hello world!3", null);
-    print(getRandom(), ASC, "Hello world!4");
-    print(getRandom(), DESC, "Hello world!5", "test1", "test2");
-    print(getRandom(), DESC, "Hello world!6");
-    print(getRandom(), ASC, null);
-    print(getRandom(), ASC, "Hello world!7");
-    print(getRandom(), DESC, DISTINCT, "Hello world!", "test13", "test2");
-    print(getRandom(), ASC, DISTINCT, "Hello world!");
-    print(getRandom(), ASC, DOUBLES, null);
-    print(getRandom(), ASC, DOUBLES, "Hello world!10");
+    MessageService service = new com.tcs.edu.decorator.OrderedDistinctedMessageService(
+        new ConsolePrinter(),
+        new TimestampMessageDecorator()
+    );
+    Severity severity;
+    Message message1 = new Message(MAJOR,"Major message");
+    Message message2 = new Message(MINOR,"Major message");
+    Message message3 = new Message(REGULAR,"Major message");
+    Message message4 = new Message("message");
+    Message message5 = new Message();
+    service.print(message1, message2, message3, new Message());
+    service.print(DESC, DISTINCT, new Message(REGULAR, "Message3"));
+    service.print(ASC, DISTINCT, new Message(REGULAR, "Messagesage3"));
+    service.print(DESC, DOUBLES, message1, message1, message1, message2,message3,message4,message5);
+    service.print(DESC, DISTINCT, message5);
+
+
   }
 }
