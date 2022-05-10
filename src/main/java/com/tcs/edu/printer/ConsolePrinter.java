@@ -1,6 +1,8 @@
 package com.tcs.edu.printer;
 
-public class ConsolePrinter {
+import com.tcs.edu.interfaces.Printer;
+
+public class ConsolePrinter implements Printer {
   /**
    * Class name ConsolePrinter.
    * Prints a message and then terminate the line.
@@ -9,7 +11,7 @@ public class ConsolePrinter {
    * @throws NullPointerException
    * @author Alex Ang
    */
-  public static void print(String message) {
+  public void print(String message) {
     System.out.println(message);
   }
 }

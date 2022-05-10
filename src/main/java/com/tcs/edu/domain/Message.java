@@ -1,8 +1,8 @@
 package com.tcs.edu.domain;
 
-import com.tcs.edu.decorator.Severity;
+import com.tcs.edu.enums.Severity;
 
-import static com.tcs.edu.decorator.Severity.MINOR;
+import static com.tcs.edu.enums.Severity.MINOR;
 
 public class Message {
   private Severity severity;
