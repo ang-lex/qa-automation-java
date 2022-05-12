@@ -1,13 +1,35 @@
 package com.tcs.edu;
 
+import com.tcs.edu.decorator.TimestampMessageDecorator;
+import com.tcs.edu.domain.Message;
+import com.tcs.edu.enums.Severity;
+import com.tcs.edu.interfaces.MessageService;
 import com.tcs.edu.printer.ConsolePrinter;
 
-import static com.tcs.edu.decorator.TimestampMessageDecorator.decorate;
+import static com.tcs.edu.enums.Doubling.DISTINCT;
+import static com.tcs.edu.enums.Doubling.DOUBLES;
+import static com.tcs.edu.enums.MessageOrder.ASC;
+import static com.tcs.edu.enums.MessageOrder.DESC;
+import static com.tcs.edu.enums.Severity.*;
 
 class Application {
   public static void main(String[] args) {
-    for (int i=0;i<=3;i++) {
-      ConsolePrinter.print(decorate("Hello world!"));
-    }
+    MessageService service = new com.tcs.edu.decorator.OrderedDistinctedMessageService(
+        new ConsolePrinter(),
+        new TimestampMessageDecorator()
+    );
+    Severity severity;
+    Message message1 = new Message(MAJOR,"Major message");
+    Message message2 = new Message(MINOR,"Major message");
+    Message message3 = new Message(REGULAR,"Major message");
+    Message message4 = new Message("message");
+    Message message5 = new Message();
+    service.print(message1, message2, message3, new Message());
+    service.print(DESC, DISTINCT, new Message(REGULAR, "Message3"));
+    service.print(ASC, DISTINCT, new Message(REGULAR, "Messagesage3"));
+    service.print(DESC, DOUBLES, message1, message1, message1, message2,message3,message4,message5);
+    service.print(DESC, DISTINCT, message5);
+
+
   }
 }
