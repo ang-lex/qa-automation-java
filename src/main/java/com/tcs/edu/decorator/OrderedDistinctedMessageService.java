@@ -18,7 +18,7 @@ import static com.tcs.edu.enums.MessageOrder.ASC;
 /**
  *
  */
-public class OrderedDistinctedMessageService implements MessageService {
+public class OrderedDistinctedMessageService extends ValidatedService implements MessageService {
   private Printer printer;
   private MessageDecorator messageDecorator;
 
@@ -29,7 +29,7 @@ public class OrderedDistinctedMessageService implements MessageService {
 
   public void print(Message... messages) {
     for (Message message : messages) {
-      if (message != null) {
+      if (super.isArgsValid(message)) {
         printer.print(cutter(messageDecorator.decorate(message)));
       }
     }
