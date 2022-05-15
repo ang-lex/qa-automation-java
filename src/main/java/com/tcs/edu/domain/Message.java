@@ -2,6 +2,8 @@ package com.tcs.edu.domain;
 
 import com.tcs.edu.enums.Severity;
 
+import java.util.Objects;
+
 import static com.tcs.edu.enums.Severity.MINOR;
 
 public class Message {
@@ -37,5 +39,21 @@ public class Message {
   public Message setBody(String body) {
     this.body = body;
     return this;
+  }
+
+  @Override
+  public boolean equals(Object message) {
+    if (message == null || this.getClass() != message.getClass()) return false;
+    return severity == ((Message) message).severity;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(severity, body);
+  }
+
+  @Override
+  public String toString() {
+    return "Message {severity : " + severity + " ; body : " + body + "}";
   }
 }
