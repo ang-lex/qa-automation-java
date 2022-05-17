@@ -18,7 +18,6 @@ class Application {
         new ConsolePrinter(),
         new TimestampMessageDecorator()
     );
-    Severity severity;
     Message message1 = new Message(MAJOR,"Major message");
     Message message2 = new Message(MINOR,"Major message");
     Message message3 = new Message(REGULAR,"Major message");
