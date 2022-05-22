@@ -3,7 +3,6 @@ package com.tcs.edu.decorator;
 import com.tcs.edu.domain.Message;
 import com.tcs.edu.enums.Doubling;
 import com.tcs.edu.enums.MessageOrder;
-import com.tcs.edu.enums.Severity;
 import com.tcs.edu.interfaces.MessageDecorator;
 import com.tcs.edu.interfaces.MessageService;
 import com.tcs.edu.interfaces.Printer;
@@ -15,9 +14,6 @@ import static com.tcs.edu.decorator.CutDecorator.cutter;
 import static com.tcs.edu.enums.Doubling.DISTINCT;
 import static com.tcs.edu.enums.MessageOrder.ASC;
 
-/**
- *
- */
 public class OrderedDistinctedMessageService extends ValidatedService implements MessageService {
   private Printer printer;
   private MessageDecorator messageDecorator;
@@ -29,8 +25,11 @@ public class OrderedDistinctedMessageService extends ValidatedService implements
 
   public void print(Message... messages) {
     for (Message message : messages) {
-      if (super.isArgsValid(message)) {
+      try {
+        super.isArgsValid(message);
         printer.print(cutter(messageDecorator.decorate(message)));
+      } catch (IllegalArgumentException e) {
+        e.printStackTrace();
       }
     }
   }
@@ -45,13 +44,11 @@ public class OrderedDistinctedMessageService extends ValidatedService implements
     }
   }
 
-
   public void print(MessageOrder order, Doubling doubling, Message... messages) {
     List<String> messagesList = new ArrayList<>();
     for (Message message : messages) {
       messagesList.add(message.getBody());
     }
-
     if ((doubling == DISTINCT)) {
       for (Message message : messages) {
         if (!messagesList.contains(message)) {

@@ -3,7 +3,8 @@ package com.tcs.edu.decorator;
 import com.tcs.edu.domain.Message;
 
 public abstract class ValidatedService {
-  public boolean isArgsValid(Message message){
-    return message != null && message.getBody() != null;
+  public void isArgsValid(Message message) {
+    if (message.getSeverity() == null) throw new IllegalArgumentException("Severity is null");
+    if (message.getBody() == null) throw new IllegalArgumentException("Body is null");
   }
 }

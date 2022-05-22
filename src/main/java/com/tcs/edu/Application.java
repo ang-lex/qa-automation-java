@@ -2,7 +2,6 @@ package com.tcs.edu;
 
 import com.tcs.edu.decorator.TimestampMessageDecorator;
 import com.tcs.edu.domain.Message;
-import com.tcs.edu.enums.Severity;
 import com.tcs.edu.interfaces.MessageService;
 import com.tcs.edu.printer.ConsolePrinter;
 
@@ -22,7 +21,7 @@ class Application {
     Message message2 = new Message(MINOR,"Major message");
     Message message3 = new Message(REGULAR,"Major message");
     Message message4 = new Message("message");
-    Message message5 = new Message();
+    Message message5 = new Message(null,"body");
     Message message6 = new Message(null);
     service.print(message1, message2, message3, new Message());
     service.print(DESC, DISTINCT, new Message(REGULAR, "Message3"));
