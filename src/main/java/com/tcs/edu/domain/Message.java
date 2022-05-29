@@ -3,14 +3,17 @@ package com.tcs.edu.domain;
 import com.tcs.edu.enums.Severity;
 
 import java.util.Objects;
+import java.util.UUID;
 
 import static com.tcs.edu.enums.Severity.MINOR;
 
 public class Message {
+  private UUID id;
   private Severity severity;
   private String body;
 
   public Message(Severity severity, String body) {
+    this.id=UUID.randomUUID();
     this.severity = severity;
     this.body = body;
   }
@@ -39,6 +42,10 @@ public class Message {
   public Message setBody(String body) {
     this.body = body;
     return this;
+  }
+
+  public UUID getId() {
+    return id;
   }
 
   @Override
