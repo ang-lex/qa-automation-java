@@ -3,10 +3,7 @@ package com.tcs.edu.repository;
 import com.tcs.edu.domain.Message;
 import com.tcs.edu.interfaces.MessageRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class HashMapMessageRepository implements MessageRepository {
   private Map<UUID,Message> messages= new HashMap<>();
@@ -20,5 +17,10 @@ public class HashMapMessageRepository implements MessageRepository {
   @Override
   public Message findByPrimaryKey(UUID key) {
     return messages.get(key);
+  }
+
+  @Override
+  public Collection<Message> findAll() {
+    return (Collection<Message>) messages;
   }
 }
