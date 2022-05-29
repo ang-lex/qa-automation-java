@@ -5,6 +5,7 @@ import com.tcs.edu.interfaces.MessageRepository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class HashMapMessageRepository implements MessageRepository {
@@ -14,5 +15,10 @@ public class HashMapMessageRepository implements MessageRepository {
   public UUID create(Message message) {
     messages.put(message.getId(),message);
     return message.getId();
+  }
+
+  @Override
+  public Message findByPrimaryKey(UUID key) {
+    return messages.get(key);
   }
 }
