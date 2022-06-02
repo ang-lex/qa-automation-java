@@ -1,6 +1,7 @@
 package com.tcs.edu;
 
 import com.tcs.edu.decorator.TimestampMessageDecorator;
+import com.tcs.edu.domain.LogException;
 import com.tcs.edu.domain.Message;
 import com.tcs.edu.interfaces.MessageService;
 import com.tcs.edu.printer.ConsolePrinter;
@@ -26,9 +27,25 @@ class Application {
     service.print(message1, message2, message3, new Message());
     service.print(DESC, DISTINCT, new Message(REGULAR, "Message3"));
     service.print(ASC, DISTINCT, new Message(REGULAR, "Messagesage3"));
-    service.print(DESC, DOUBLES, message1, message1, message1, message2,message3,message4,message5);
-    service.print(DESC, DISTINCT, message5);
+    try {
+      service.print(DESC, DOUBLES, message1, message1, message1, message2,message3,message4,message5);
+    }
+    catch (LogException e){
+      e.printStackTrace();
+    }
+    try {
+service.print(DESC, DISTINCT, message5);
+    }
+    catch (LogException e){
+      e.printStackTrace();
+    }
+
+    try {
     service.print(DESC, DISTINCT, message6);
+    }
+    catch (LogException e) {
+      e.printStackTrace();
+    }
     System.out.println(message1);
     System.out.println(message1.hashCode());
     System.out.println(message1.equals(message2));

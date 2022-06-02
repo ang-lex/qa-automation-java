@@ -26,16 +26,16 @@ public class OrderedDistinctedMessageService extends ValidatedService implements
 
   public void print(Message... messages) throws LogException {
     for (Message message : messages) {
-//      try {
-//        super.isArgsValid(message);
+      try {
+        super.isArgsValid(message);
         printer.print(cutter(messageDecorator.decorate(message)));
-//      } catch (IllegalArgumentException e) {
-//        e.printStackTrace();
-//      }
+      } catch (IllegalArgumentException e) {
+        e.printStackTrace();
+      }
     }
   }
 
-  public void print(MessageOrder order, Message... messages) throws LogException{
+  public void print(MessageOrder order, Message... messages) throws LogException {
     if (order == ASC) {
       print(messages);
     } else {
@@ -45,7 +45,7 @@ public class OrderedDistinctedMessageService extends ValidatedService implements
     }
   }
 
-  public void print(MessageOrder order, Doubling doubling, Message... messages) throws LogException{
+  public void print(MessageOrder order, Doubling doubling, Message... messages) throws LogException {
     List<String> messagesList = new ArrayList<>();
     for (Message message : messages) {
       messagesList.add(message.getBody());
