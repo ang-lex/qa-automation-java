@@ -31,24 +31,28 @@ class Application {
       service.print(DESC, DOUBLES, message1, message1, message1, message2,message3,message4,message5);
     }
     catch (LogException e){
-      e.printStackTrace();
+      testExceptionLog(e);
     }
     try {
 service.print(DESC, DISTINCT, message5);
     }
     catch (LogException e){
-      e.printStackTrace();
+      testExceptionLog(e);
     }
 
     try {
     service.print(DESC, DISTINCT, message6);
     }
     catch (LogException e) {
-      e.printStackTrace();
+      testExceptionLog(e);
     }
     System.out.println(message1);
     System.out.println(message1.hashCode());
     System.out.println(message1.equals(message2));
     System.out.println(message1.equals(message4));
+  }
+
+  private static void testExceptionLog(Exception e) {
+    System.out.println(e.getMessage() + " -> " + e.getCause().getMessage());
   }
 }

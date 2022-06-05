@@ -30,7 +30,7 @@ public class OrderedDistinctedMessageService extends ValidatedService implements
         super.isArgsValid(message);
         printer.print(cutter(messageDecorator.decorate(message)));
       } catch (IllegalArgumentException e) {
-        e.printStackTrace();
+        throw new LogException("Message processing error", e);
       }
     }
   }
