@@ -2,6 +2,7 @@ package com.tcs.edu.decorator;
 
 import com.tcs.edu.domain.LogException;
 import com.tcs.edu.domain.Message;
+import com.tcs.edu.domain.ValidatedService;
 import com.tcs.edu.enums.Doubling;
 import com.tcs.edu.enums.MessageOrder;
 import com.tcs.edu.interfaces.MessageDecorator;
