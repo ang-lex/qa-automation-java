@@ -26,6 +26,7 @@ entity Region {
 }
 
 entity Country {
+    id bigint generated always as identity primary key
 	countryName String unique required minlength(5) maxlength(20)
 }
 

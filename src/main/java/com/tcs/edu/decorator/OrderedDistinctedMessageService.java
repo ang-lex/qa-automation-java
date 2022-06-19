@@ -1,9 +1,10 @@
 package com.tcs.edu.decorator;
 
+import com.tcs.edu.domain.LogException;
 import com.tcs.edu.domain.Message;
+import com.tcs.edu.domain.ValidatedService;
 import com.tcs.edu.enums.Doubling;
 import com.tcs.edu.enums.MessageOrder;
-import com.tcs.edu.enums.Severity;
 import com.tcs.edu.interfaces.MessageDecorator;
 import com.tcs.edu.interfaces.MessageService;
 import com.tcs.edu.interfaces.Printer;
@@ -15,10 +16,7 @@ import static com.tcs.edu.decorator.CutDecorator.cutter;
 import static com.tcs.edu.enums.Doubling.DISTINCT;
 import static com.tcs.edu.enums.MessageOrder.ASC;
 
-/**
- *
- */
-public class OrderedDistinctedMessageService implements MessageService {
+public class OrderedDistinctedMessageService extends ValidatedService implements MessageService {
   private Printer printer;
   private MessageDecorator messageDecorator;
 
@@ -27,15 +25,18 @@ public class OrderedDistinctedMessageService implements MessageService {
     this.messageDecorator = messageDecorator;
   }
 
-  public void print(Message... messages) {
+  public void print(Message... messages) throws LogException {
     for (Message message : messages) {
-      if (message != null) {
+      try {
+        super.isArgsValid(message);
         printer.print(cutter(messageDecorator.decorate(message)));
+      } catch (IllegalArgumentException e) {
+        throw new LogException("Message processing error", e);
       }
     }
   }
 
-  public void print(MessageOrder order, Message... messages) {
+  public void print(MessageOrder order, Message... messages) throws LogException {
     if (order == ASC) {
       print(messages);
     } else {
@@ -45,13 +46,11 @@ public class OrderedDistinctedMessageService implements MessageService {
     }
   }
 
-
-  public void print(MessageOrder order, Doubling doubling, Message... messages) {
+  public void print(MessageOrder order, Doubling doubling, Message... messages) throws LogException {
     List<String> messagesList = new ArrayList<>();
     for (Message message : messages) {
       messagesList.add(message.getBody());
     }
-
     if ((doubling == DISTINCT)) {
       for (Message message : messages) {
         if (!messagesList.contains(message)) {
